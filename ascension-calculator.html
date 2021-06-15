@@ -3,8 +3,6 @@
 	<head>
 		<title>Cookie Clicker Calculator</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 		<style>
 			body {
 				font-family: sans-serif;
@@ -25,15 +23,14 @@
 			<span id="cookiesNeeded"></span>
 		</div>
 		<script>
+			const currentPrestigeInput = document.querySelector("#prestige")
+			const chipsNeededInput = document.querySelector("#chipsNeeded")
+			const cookiesNeededOutput = document.querySelector("#cookiesNeeded")
 			function main() {
-				var a = Number($("#prestige").val())
-				var b = Number($("#chipsNeeded").val())
-				var c = eval(((a + b) ** 3 - a ** 3) * 1e12)
-				$("#cookiesNeeded").html(
-					"You need <b>" +
-						Number.parseFloat(c).toExponential() +
-						" cookies </b> for the next ascension"
-				)
+				const currentPL = parseFloat(currentPrestigeInput.value),
+					nextHC = parseFloat(chipsNeededInput.value),
+					cookiesNeeded = ((currentPL + nextHC) ** 3 - currentPL ** 3) * 1e12
+				cookiesNeededOutput.innerHTML = `You need <b> ${cookiesNeeded.toExponential()} cookies </b> for the next ascension`
 			}
 		</script>
 	</body>
