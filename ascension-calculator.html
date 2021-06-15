@@ -19,19 +19,22 @@
 			Number of heavenly chips for next ascension:<br />
 			<input id="chipsNeeded" /><br />
 			<br />
-			<button onclick="main()">Calculate</button>
+			<button id="calculateButton">Calculate</button>
 			<span id="cookiesNeeded"></span>
 		</div>
 		<script>
-			const currentPrestigeInput = document.querySelector("#prestige")
-			const chipsNeededInput = document.querySelector("#chipsNeeded")
-			const cookiesNeededOutput = document.querySelector("#cookiesNeeded")
-			function main() {
+			const currentPrestigeInput = document.querySelector("#prestige"),
+				chipsNeededInput = document.querySelector("#chipsNeeded"),
+				cookiesNeededOutput = document.querySelector("#cookiesNeeded"),
+				calculateButton = document.querySelector("#calculateButton")
+			function calculateCookiesNeeded() {
 				const currentPL = parseFloat(currentPrestigeInput.value),
 					nextHC = parseFloat(chipsNeededInput.value),
 					cookiesNeeded = ((currentPL + nextHC) ** 3 - currentPL ** 3) * 1e12
 				cookiesNeededOutput.innerHTML = `You need <b> ${cookiesNeeded.toExponential()} cookies </b> for the next ascension`
 			}
+
+			calculateButton.addEventListener("click", calculateCookiesNeeded)
 		</script>
 	</body>
 </html>
